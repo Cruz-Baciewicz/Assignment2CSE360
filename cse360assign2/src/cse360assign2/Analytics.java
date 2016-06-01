@@ -8,11 +8,17 @@ package cse360assign2;
 
 public class Analytics extends OrderedIntList {
 
-	private double meanNum;
-	private int median;
-	private int high;
-	private int low;
-	private int numInts;
+	protected double meanNum;
+	protected int median;
+	protected int high;
+	protected int low;
+	protected int numInts;
+	
+	Analytics()
+	{
+		OrderedIntList list = new OrderedIntList();
+	}
+	
 	
 	/**
 	 * The mean method is used to calculate the mean of a list of integers specified
@@ -22,21 +28,24 @@ public class Analytics extends OrderedIntList {
 	 * @return mean Mean of the integers in the array
 	 */
 	
+	
 	public double mean(int[] array)
 	{
 		int sum = 0;
 		
-		for (int index = 0; index <= array.length; index++)
+		if(array.length == 0)
+			return -1;
+		else
 		{
-			sum += array[index];
-		}
-		meanNum = sum/array.length;
+			for (int index = 0; index < array.length; index++)
+			{
+				sum += array[index];
+			}
+			meanNum = sum/(array.length);
 		
 		return meanNum;
-		
+		}
 	}
-	
-	
 	
 	/**
 	 * The median method is used to calculate the median of a list of integers specified
@@ -48,8 +57,14 @@ public class Analytics extends OrderedIntList {
 	
 	public int median(int[] array)
 	{
+		
+		if(array.length == 0)
+			return -1;
+		
 		int middle;
 		int length = array.length-1;
+	
+			
 		if(length % 2 == 0)
 		{
 			middle = length/2;
@@ -76,11 +91,17 @@ public class Analytics extends OrderedIntList {
 	
 	public int high(int[] array)
 	{
-		int last;
-		last = array.length-1;
-		high = array[last];
+		
+		if(array.length == 0)
+			return -1;
+		else
+		{
+			int last;
+			last = array.length-1;
+			high = array[last];
 		
 		return high;
+		}
 	}
 	
 	
@@ -94,11 +115,15 @@ public class Analytics extends OrderedIntList {
 	
 	public int low(int[] array)
 	{
-		low = array[0];
-		return low;
+		
+		if(array.length == 0)
+			return -1;
+		else
+		{
+			low = array[0];
+			return low;
+		}
 	}
-	
-	
 	
 	/**
 	 * The numInts method is used to calculate the number of integers in 
@@ -115,7 +140,14 @@ public class Analytics extends OrderedIntList {
 		return numInts;
 	}
 	
-	
+	public void test()
+	{
+		System.out.println("Mean: " + mean(array));
+		System.out.println("Median: " + median(array));
+		System.out.println("High number: " + high(array));
+		System.out.println("Low number: " + low(array));
+		System.out.println("Number of integers: " + numInts(array));	
+	}
 	
 	
 }
